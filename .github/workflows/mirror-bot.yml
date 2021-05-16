@@ -32,7 +32,7 @@ jobs:
 
       - name: Clone The Secret Mirror Repository
         run: |
-          git clone https://"${{ secrets.GH_TOKEN }}"@github.com/AtomicXZ/MirrorBawt.git -b kang source
+          git clone https://"${{ secrets.GH_TOKEN }}"@github.com/AtomicXZ/MirrorBawt.git -b master source
 
       - name: Compile The Mirroring Docker Container
         run: |
