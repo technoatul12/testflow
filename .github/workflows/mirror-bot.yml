@@ -32,7 +32,7 @@ jobs:
 
       - name: Clone The Secret Mirror Repository
         run: |
-          git clone https://"${{ secrets.GH_TOKEN }}"@github.com/AtomicXZ/MirrorBawt.git -b kang source
+         git clone https://${GitHubName}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.MIRROR_REPOSLUG }} -b ${Branch} source
 
       - name: Compile The Mirroring Docker Container
         run: |
@@ -51,10 +51,10 @@ jobs:
         continue-on-error: true
         run: |
           # ${GITHUB_REPOSITORY} is the repo slug which runs this script
-          git clone https://${{ secrets.GH_TOKEN }}@github.com/AtomicXZ/mirror-flow loop
+          git clone https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} loop
           cd loop || exit 1
           echo $(( RANDOM - ( RANDOM % RANDOM ) )) > looper.txt
           git add looper.txt
           git commit -m "Workflow : Loop"
-          git push -q https://${{ secrets.GH_TOKEN }}@github.com/AtomicXZ/mirror-flow HEAD:main
+          git push -q https://${{ secrets.GH_TOKEN }}@github.com/${GITHUB_REPOSITORY} HEAD:main
 
